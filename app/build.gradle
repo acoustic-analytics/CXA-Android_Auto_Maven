@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.roughike:bottom-bar:2.3.1'
     implementation 'com.google.android.gms:play-services-ads:16.0.0'
 
-//    implementation 'com.ea:tealeafmd5:1.0.9'
+//    implementation 'com.ea:tealeafmd5:1.0.8'
     implementation 'com.ea:eocore:2.0.59'
     implementation 'com.ea:tealeaf:10.3.94'
     implementation 'com.ea:teacuts:3.0.4'

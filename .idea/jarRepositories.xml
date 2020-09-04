@@ -56,5 +56,15 @@
       <option name="name" value="maven2" />
       <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven/master" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://raw.githubusercontent.com/acoustic-analytics/Android_Maven/master" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://raw.githubusercontent.com/acoustic-analytics/Android_Maven/beta" />
+    </remote-repository>
   </component>
 </project>
