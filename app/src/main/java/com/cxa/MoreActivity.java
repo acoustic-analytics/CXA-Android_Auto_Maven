@@ -107,16 +107,15 @@ public class MoreActivity extends AppCompatActivity {
                             connection.setInitTime(new Date().getTime());
                             // Send request
                             httpClient.connect();
+                            connection.setLoadTime(new Date().getTime());
                             connection.setStatusCode(httpClient.getResponseCode());
                             connection.setResponseDataSize(httpClient.getResponseMessage().length());
-
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
-                            connection.setLoadTime(new Date().getTime());
-
+                            if (connection.getLoadTime() <= 0) {
+                                connection.setLoadTime(new Date().getTime());
+                            }
                             Tealeaf.logConnection(connection.getUrl(), connection.getInitTime(), connection.getLoadTime(), connection.getResponseDataSize(), connection.getStatusCode());
                             httpClient.disconnect();
                         }
