@@ -10,13 +10,20 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ibm.eo.EOCore;
 import com.cxa.search.SearchActivity;
 import com.cxa.util.UIUtil;
+import com.ibm.eo.EOCore;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.tl.uic.Tealeaf;
 import com.tl.uic.TealeafEOLifecycleObject;
+import com.tl.uic.model.Connection;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
 
 public class MoreActivity extends AppCompatActivity {
     EditText ibm_id_text;
@@ -78,6 +85,73 @@ public class MoreActivity extends AppCompatActivity {
             }
         });
 
+        Button logConnectionButton = findViewById(R.id.button_log_connection);
+        logConnectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HttpURLConnection httpClient = null;
+                        URL url;
+
+                        // Tealeaf Log Connection
+                        Connection connection = new Connection();
+
+                        try {
+                            url = new URL("https://www.android.com/");
+                            httpClient = (HttpURLConnection) url.openConnection();
+
+                            connection.setUrl(url.toString());
+                            connection.setInitTime(new Date().getTime());
+                            // Send request
+                            httpClient.connect();
+                            connection.setStatusCode(httpClient.getResponseCode());
+                            connection.setResponseDataSize(httpClient.getResponseMessage().length());
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connection.setLoadTime(new Date().getTime());
+
+                            Tealeaf.logConnection(connection.getUrl(), connection.getInitTime(), connection.getLoadTime(), connection.getResponseDataSize(), connection.getStatusCode());
+                            httpClient.disconnect();
+                        }
+
+                    }
+                }).start();
+
+//                // Instantiate the RequestQueue.
+//                RequestQueue queue = Volley.newRequestQueue(MoreActivity.this);
+//
+//                String url = "https://www.google.com";
+//
+//                // Tealeaf Log connection API
+//                Connection connection = new Connection();
+//
+//
+//                // Request a string response from the provided URL.
+//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                // Display the first 500 characters of the response string.
+////                                textView.setText("Response is: "+ response.substring(0,500));
+//                            }
+//                        }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+////                        textView.setText("That didn't work!");
+//                    }
+//                });
+//
+//// Add the request to the RequestQueue.
+//                queue.add(stringRequest);
+            }
+        });
 
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         loadBottomBar();

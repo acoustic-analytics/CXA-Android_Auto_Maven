@@ -172,17 +172,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
-    <!--<Button-->
-        <!--android:text="Simulate Exception"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/CXA_pink"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-
-        <!--android:textColor="#fff"-->
-        <!--android:id="@+id/button_exception" />-->
+    <Button
+        android:text="Log Connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/CXA_pink"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#fff"
+        android:id="@+id/button_log_connection" />
 
     <RelativeLayout
         android:layout_width="match_parent"
