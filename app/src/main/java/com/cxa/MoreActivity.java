@@ -109,7 +109,7 @@ public class MoreActivity extends AppCompatActivity {
                             httpClient.connect();
                             connection.setLoadTime(new Date().getTime());
                             connection.setStatusCode(httpClient.getResponseCode());
-                            connection.setResponseDataSize(httpClient.getResponseMessage().length());
+                            connection.setResponseDataSize(httpClient.getContentLength());
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
