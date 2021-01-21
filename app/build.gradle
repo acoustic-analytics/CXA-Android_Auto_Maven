@@ -41,8 +41,8 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
 
 //    implementation 'com.ea:tealeafmd5:1.0.8'
-    implementation 'com.ea:eocore:2.0.59'
-    implementation 'com.ea:tealeaf:10.3.99'
+    implementation 'com.ea:eocore:2.0.76'
+    implementation 'com.ea:tealeaf:10.3.100'
     implementation 'com.ea:teacuts:3.0.4'
 }
 
