@@ -183,6 +183,17 @@
         android:textColor="#fff"
         android:id="@+id/button_log_connection" />
 
+    <Button
+        android:text="Log Connection Volley Client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/CXA_pink"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#fff"
+        android:id="@+id/button_log_connection_volley" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
