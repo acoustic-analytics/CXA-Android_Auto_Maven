@@ -28,10 +28,18 @@ import com.tl.uic.model.Connection;
 
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 public class MoreActivity extends AppCompatActivity {
     EditText ibm_id_text;
@@ -44,6 +52,7 @@ public class MoreActivity extends AppCompatActivity {
 
     // Test Tealeaf Connection type
     RequestQueue volleyQueue;
+    OkHttpClient okHttpClient;
 
     String url = "https://jsonplaceholder.typicode.com/todos/1";
 
@@ -111,22 +120,40 @@ public class MoreActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         HttpURLConnection httpClient = null;
-                        URL url;
+                        URL uri;
 
                         // Tealeaf Log Connection
                         Connection connection = new Connection();
 
                         try {
-                            url = new URL("https://www.android.com/");
-                            httpClient = (HttpURLConnection) url.openConnection();
+                            uri = new URL(url);
+                            httpClient = (HttpURLConnection) uri.openConnection();
 
-                            connection.setUrl(url.toString());
+                            connection.setUrl(url);
                             connection.setInitTime(new Date().getTime());
                             // Send request
                             httpClient.connect();
+
+                            String inputLine;
+                            StringBuffer response = new StringBuffer();
+                            if (httpClient.getResponseCode() == HttpURLConnection.HTTP_OK) { //success
+                                BufferedReader in = new BufferedReader(new InputStreamReader(httpClient.getInputStream()));
+
+                                while ((inputLine = in.readLine()) != null) {
+                                    response.append(inputLine);
+                                }
+                                in.close();
+
+                                // print result
+                                System.out.println(response.toString());
+                            } else {
+                                System.out.println("POST request not worked");
+                            }
+
+
                             connection.setLoadTime(new Date().getTime());
                             connection.setStatusCode(httpClient.getResponseCode());
-                            connection.setResponseDataSize(httpClient.getContentLength());
+                            connection.setResponseDataSize(response.length());
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -143,13 +170,12 @@ public class MoreActivity extends AppCompatActivity {
             }
         });
 
-        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        loadBottomBar();
 
         /***
          * Log Connection type using Volley Client
          */
         Button logConnectionVolleyButton = findViewById(R.id.button_log_connection_volley);
+        okHttpClient = new OkHttpClient();
         logConnectionVolleyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +216,6 @@ public class MoreActivity extends AppCompatActivity {
                         connection.setLoadTime(new Date().getTime());
                         connection.setStatusCode(response.statusCode);
                         connection.setResponseDataSize(response.data.length);
-                        connection.setResponseTime(connection.getLoadTime() - connection.getInitTime());
                         Tealeaf.logConnection(connection);
 
                         return super.parseNetworkResponse(response);
@@ -213,17 +238,64 @@ public class MoreActivity extends AppCompatActivity {
             }
         });
 
+        /***
+         * Log Connection type using Volley Client
+         */
+        Button logConnectionOkhttpButton = findViewById(R.id.button_log_connection_okhttp);
+        logConnectionOkhttpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /***
+                 *  Tealeaf Log connection API
+                 */
+                Connection connection = new Connection();
+                connection.setUrl(url);
+                connection.setInitTime(new Date().getTime());
+
+                Request request = new Request.Builder()
+                        .url(url)
+                        .build();
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, okhttp3.Response response) throws IOException {
+                        try (ResponseBody responseBody = response.body()) {
+                            if (!response.isSuccessful())
+                                throw new IOException("Unexpected code " + response);
+
+                            connection.setLoadTime(new Date().getTime());
+                            connection.setStatusCode(Integer.valueOf(response.networkResponse().code()));
+
+                            connection.setResponseDataSize(responseBody.string().length());
+                            Tealeaf.logConnection(connection);
+//
+//                            Headers responseHeaders = response.headers();
+//                            for (int i = 0, size = responseHeaders.size(); i < size; i++) {
+//                                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+//                            }
+//
+//                            System.out.println(responseBody.string());
+                        }
+                    }
+                });
+            }
+        });
+
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         loadBottomBar();
-
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
         bottomBar.selectTabAtPosition(3);
         overridePendingTransition(0, 0);
-
     }
 
 
@@ -258,3 +330,4 @@ public class MoreActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(e);
     }
 }
+
