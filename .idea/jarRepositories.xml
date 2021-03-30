@@ -22,11 +22,6 @@
       <option name="url" value="https://jcenter.bintray.com/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven2" />
-      <option name="name" value="maven2" />
-      <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven/beta" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="Google" />
       <option name="name" value="Google" />
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
@@ -39,22 +34,7 @@
     <remote-repository>
       <option name="id" value="maven2" />
       <option name="name" value="maven2" />
-      <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven2" />
-      <option name="name" value="maven2" />
-      <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven/Master" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven2" />
-      <option name="name" value="maven2" />
-      <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven2" />
-      <option name="name" value="maven2" />
-      <option name="url" value="https://raw.githubusercontent.com/ibm-watson-cxa/Android_Maven/master" />
+      <option name="url" value="https://raw.githubusercontent.com/acoustic-analytics/Android_Maven" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="maven2" />
