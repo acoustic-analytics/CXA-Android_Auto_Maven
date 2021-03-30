@@ -4,8 +4,8 @@
     "IBMGlobalScreenSettings": {
       "ScreenChange": true,
       "DisplayName": "",
-      "CaptureLayoutDelay": 500,
-      "ScreenShot": true,
+      "CaptureLayoutDelay": 1000,
+      "ScreenShot": false,
       "NumberOfWebViews": 0,
       "CaptureUserEvents": true,
       "CaptureScreenVisits": false,
@@ -26,31 +26,31 @@
     },
     "MainActivity": {
       "DisplayName": "HomePageActivity",
-      "CaptureLayoutDelay": 1000
+      "CaptureLayoutDelay": 2000
     },
     "SearchActivity": {
       "DisplayName": "SearchActivity",
-      "CaptureLayoutDelay": 100
+      "CaptureLayoutDelay": 1000
     },
     "CartActivity": {
       "DisplayName": "CartActivity",
-      "CaptureLayoutDelay": 200
+      "CaptureLayoutDelay": 1000
     },
     "ListOfProductsActivity": {
       "DisplayName": "ListOfProductsActivity",
-      "CaptureLayoutDelay": 500
+      "CaptureLayoutDelay": 1000
     },
     "CheckoutActivity": {
       "DisplayName": "CheckoutActivity",
-      "CaptureLayoutDelay": 100
+      "CaptureLayoutDelay": 1000
     },
     "MoreActivity": {
       "DisplayName": "MoreActivity",
-      "CaptureLayoutDelay": 100
+      "CaptureLayoutDelay": 1000
     },
     "ProductDetailsFragment": {
       "DisplayName": "ProductDetailsFragment",
-      "CaptureLayoutDelay": 500
+      "CaptureLayoutDelay": 1000
     }
 
   },

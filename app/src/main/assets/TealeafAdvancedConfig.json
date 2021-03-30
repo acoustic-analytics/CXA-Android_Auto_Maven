@@ -10,7 +10,7 @@
   "DefaultTextViewGravity": "left",
   "DefaultTextViewPaddingLeft": 5,
   "DefaultTextViewPaddingRight": 5,
-  "DefaultAutoLayoutDelay": 500,
+  "DefaultAutoLayoutDelay": 1000,
   "ScreenViewUnloadDelay": 1000,
   "RemoveIp": false,
   "IpPlaceholder": "N/A",
