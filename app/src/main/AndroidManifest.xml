@@ -14,8 +14,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -30,8 +31,5 @@
         <activity android:name="com.cxa.search.ListOfProductsActivity"></activity>
         <activity android:name="com.cxa.CheckoutActivity"></activity>
         <activity android:name="com.cxa.MoreActivity"></activity>
-
-
     </application>
-
 </manifest>
